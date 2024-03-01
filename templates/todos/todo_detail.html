@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Todo Detail</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/styles.css' %}">
+
+</head>
+<body>
+    <h1>{{ todo.title }}</h1>
+    <p>{{ todo.description }}</p>
+    <p>Completed: {{ todo.completed }}</p>
+    <p>Created At: {{ todo.created_at }}</p>
+    <a href="{% url 'todo_update' todo.pk %}">Edit</a>
+    <form action="{% url 'todo_delete' todo.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <a href="{% url 'todo_list' %}">Back to Todo List</a>
+</body>
+</html>
